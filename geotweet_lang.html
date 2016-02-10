@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map Academy | CartoDB.js &amp; Torque.js</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+    <style>
+      html, body, #map {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      #desc {
+          position: absolute;
+          top: 10px;
+          left: 45px;
+          border: 1px solid #999;
+          border-radius: 5px;
+          width: 275px;
+          background: rgba(255,255,255,0.9);
+          padding: 0 10px;
+      }
+      #sql-buttons {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+      }
+      .layer_selector {
+          background: rgba(255,255,255,0.9);
+          border-radius: 5px;
+          padding: 0;
+          border: 1px solid #999;
+          width: 250px;
+      }
+      .layer_selector > p {
+          padding: 15px 30px;
+          border-bottom: 1px solid #999;
+          margin-bottom: 0;
+      }
+      .layer_selector ul {
+          padding: 0;
+          margin: 0;
+          list-style-type: none;
+      }
+      .layer_selector li {
+          padding: 15px 30px;
+          font-family: Helvetica, Arial;
+          font-size: 13px;
+          color: #444;
+          cursor: pointer;
+      }
+      .layer_selector li:not(:last-child) {
+          border-bottom: 1px solid #999;
+      }
+      .layer_selector li:hover {
+          background-color: #F0F0F0;
+          cursor: pointer;
+      }
+    </style>
+    <script type="cartocss/text" id="cartocss">
+    /** torque visualization */
+
+    // start change here
+    Map {
+    -torque-frame-count:256;
+    -torque-animation-duration:30;
+    -torque-time-attribute:"created_at_dt";
+    -torque-aggregation-function:"CDB_Math_Mode(lang_id)";
+    -torque-resolution:2;
+    -torque-data-aggregation:linear;
+    }
+
+    #table_24d{
+      comp-op: source-over;
+      marker-fill-opacity: 0.9;
+      marker-line-color: #FFF;
+      marker-line-width: 0;
+      marker-line-opacity: 1;
+      marker-type: ellipse;
+      marker-width: 6;
+      marker-fill: #0F3B82;
+    }
+    #table_24d[frame-offset=1] {
+     marker-width:8;
+     marker-fill-opacity:0.45;
+    }
+    #table_24d[frame-offset=2] {
+     marker-width:10;
+     marker-fill-opacity:0.225;
+    }
+    #table_24d[value=1] {
+       marker-fill: #A6CEE3;
+    }
+    #table_24d[value=2] {
+       marker-fill: #1F78B4;
+    }
+    #table_24d[value=3] {
+       marker-fill: #B2DF8A;
+    }
+    #table_24d[value=4] {
+       marker-fill: #33A02C;
+    }
+    #table_24d[value=5] {
+       marker-fill: #FB9A99;
+    }
+    #table_24d[value=6] {
+       marker-fill: #E31A1C;
+    }
+    #table_24d[value=7] {
+       marker-fill: #FDBF6F;
+    }
+    #table_24d[value=8] {
+       marker-fill: #FF7F00;
+    }
+    #table_24d[value=9] {
+       marker-fill: #CAB2D6;
+    }
+    #table_24d[value=10] {
+       marker-fill: #6A3D9A;
+    }
+    #table_24d {
+       marker-fill: #DDDDDD;
+    }
+// end change here
+    </script>
+
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+
+    <script>
+      function main() {
+          var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+          });
+
+          // start change here
+          var map = new L.map('map', {
+              scrollWheelZoom: false,
+              center: [46.2,6.15],
+              zoom: 16
+          });
+          // stop change here
+
+          map.addLayer(layer);
+          console.log(layer);
+          // start change here
+          var tableName = "table_24d";
+          var userName = "geotweet";
+
+          var layerSource = {
+              type: 'torque',
+              options: {
+                  query: "SELECT * FROM " + tableName,
+                  user_name: userName,
+                  cartocss: $("#cartocss").html()
+              }
+          }
+          // stop change here
+
+          cartodb.createLayer(map, layerSource)
+            .addTo(map)
+            .done(function(layer) {
+                var torqueLayer = layer;
+                console.log(layer);
+                // once animation is loaded, automatically play
+                torqueLayer.on('load', function() {
+                    torqueLayer.play();
+                });
+
+                // pause animation at last frame
+                torqueLayer.on('change:time', function(changes) {
+                    if (changes.step === torqueLayer.provider.getSteps() - 1) {
+                        torqueLayer.pause();
+                    }
+                });
+            })
+            .error(function(err) {
+                console.log("Error: " + err);
+            });
+      }
+
+      window.onload = main;
+    </script>
+  </body>
+</html>
