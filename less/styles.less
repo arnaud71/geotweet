@@ -1,0 +1,115 @@
+/*  lang color variable */
+@color_ar : #A6CEE3;    // light-blue
+@color_de : #B2DF8A;    // light-green
+@color_en : #E31A1C;    // red
+@color_es : #FDBF6F;    // light-orange
+@color_fr : #1F78B4;    // blue
+@color_ht : #FB9A99;    // light-pink
+@color_it : #6A3D9A;    // violet
+@color_ja : #FF7F00;    // orange
+@color_pt : #33A02C;    // green
+@color_und : #CAB2D6;   // light-violet
+@color_others : #DDDDDD;  // grey
+
+
+
+html, body, #map {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* class lang square */
+.lang-square(@bg_color_lang: transparent) {
+  width: 15px;
+  height: 15px;
+  background-color: @bg_color_lang;
+  display: inline-block;
+  margin-right: 2px;
+  box-shadow: inset 0 0 1px rgba(255,255,255,.5);
+  position: relative;
+  z-index: 1;
+}
+
+
+.lang-square-ar {
+  .lang-square(@color_ar);
+}
+.lang-square-de {
+  .lang-square(@color_de);
+}
+.lang-square-en {
+  .lang-square(@color_en);
+}
+.lang-square-es {
+  .lang-square(@color_es);
+}
+.lang-square-fr {
+  .lang-square(@color_fr);
+}
+.lang-square-ht {
+  .lang-square(@color_ht);
+}
+.lang-square-it {
+  .lang-square(@color_it);
+}
+.lang-square-ja {
+  .lang-square(@color_ja);
+}
+.lang-square-pt {
+  .lang-square(@color_pt);
+}
+.lang-square-und {
+  .lang-square(@color_und);
+}
+.lang-square-others {
+  .lang-square(@color_others);
+}
+
+
+#desc {
+    position: absolute;
+    top: 10px;
+    left: 45px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    width: 275px;
+    background: rgba(255,255,255,0.9);
+    padding: 0 10px;
+}
+#sql-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.layer_selector {
+    background: rgba(255,255,255,0.6);
+    border-radius: 5px;
+    padding: 0;
+    border: 1px solid #999;
+    width: 100px;
+}
+.layer_selector > p {
+    padding: 0px 10px;
+    border-bottom: 1px solid #999;
+    margin-bottom: 0;
+}
+.layer_selector ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.layer_selector li {
+    padding: 5px 30px;
+    font-family: Helvetica, Arial;
+    font-size: 13px;
+    color: #444;
+    cursor: pointer;
+}
+.layer_selector li:not(:last-child) {
+    border-bottom: 1px solid #999;
+}
+.layer_selector li:hover {
+    background-color: #F0F0F0;
+    cursor: pointer;
+}
