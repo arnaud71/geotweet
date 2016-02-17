@@ -97,7 +97,7 @@
     <!-- <div id="desc"><h3>24h de Tweets à Genève <span id="location"></span></h3></div> -->
 
     <div id="sql-buttons" class="layer_selector">
-      <p>Langues</p>
+
       <ul>
 
         <li data=" WHERE lang_s = 'fr'" data-type="sql">
@@ -146,10 +146,14 @@
           <span data=" WHERE lang_id = 'pt'"  class="lang-square-others"> </span> ot
         </li>
 
-        <li data="XXXXX" data-type="sql">
-            raz
+        <li data="XXXXX" data-type="sql" style="text-align:center">
+          raz
         </li>
       </ul>
+    </div>
+
+    <div id="return">
+      <button onclick="window.history.back()">Retour</button>
     </div>
 
     <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>

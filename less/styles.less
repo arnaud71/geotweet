@@ -10,6 +10,7 @@
 @color_pt : #33A02C;    // green
 @color_und : #CAB2D6;   // light-violet
 @color_others : #DDDDDD;  // grey
+@color_raz : #9F9F9F;  // grey
 
 
 
@@ -65,6 +66,9 @@ html, body, #map {
 .lang-square-others {
   .lang-square(@color_others);
 }
+.lang-square-raz {
+  .lang-square(@color_raz);
+}
 
 
 #desc {
@@ -79,18 +83,25 @@ html, body, #map {
 }
 #sql-buttons {
     position: absolute;
-    top: 20px;
+    top: 40px;
     right: 20px;
 }
+
+#return {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
 .layer_selector {
     background: rgba(255,255,255,0.6);
     border-radius: 5px;
     padding: 0;
     border: 1px solid #999;
-    width: 100px;
+    width: 45px;
 }
 .layer_selector > p {
-    padding: 0px 10px;
+    padding: 0px 0px;
     border-bottom: 1px solid #999;
     margin-bottom: 0;
 }
@@ -100,7 +111,7 @@ html, body, #map {
     list-style-type: none;
 }
 .layer_selector li {
-    padding: 5px 30px;
+    padding: 1px 4px;
     font-family: Helvetica, Arial;
     font-size: 13px;
     color: #444;
