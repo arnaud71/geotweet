@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GEoTweet en directe</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <link href="lib/animate.css" rel="stylesheet">
+
+    <script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="realtime.js"></script>
+    <script type="text/javascript" src="lib/jquery.fittext.js"></script>
+    <script type="text/javascript" src="lib/jquery.lettering.js"></script>
+    <script type="text/javascript" src="lib/jquery.textillate.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript">
+    setInterval(function(){
+        querySolr();
+      }, 5000);
+    </script>
+
+
+    <div id="tweetLink">
+
+    </div>
+
+    <div id="lastTweet">
+      <h3 class="tlt1">1</h3>
+      <h3 class="tlt2">2</h3>
+      <h3 class="tlt3">3</h3>
+      <h3 class="tlt4">4</h3>
+      <h3 class="tlt5">5</h3>
+      <h3 class="tlt6">6</h3>
+    </div>
+
+  </body>
+</html>
