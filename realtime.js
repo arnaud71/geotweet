@@ -11,12 +11,7 @@ var solr = {
   fl		  : 'id,text_t,geo_s,user_screen_name_t,lang_s,user_location_t,created_at_dt',
   pt      : '46.2,6.14',
   d			  : '20',
-  //fq1     : '((+geo_s:[* TO *]) OR (+extra_filter_s:track))',
   fq1     : '+extra_filter_s:(track)',
-  //fq2		 : '{!bbox sfield=geo_p}',
-  //fq3		 : '-user_screen_name_t:(genevemeteo lhcstatus _GenevaCH  TrendsSwitz Map_Game AcidMoto PGJobs tmj_sws_energy tmj_sws_acct tmj_sws_sales tmj_sws_mgmt kartenquizde tmj_sws_purch tmj_sws_jobs1 tmj_sws_adv tmj_sws_finance tmj_sws_hr tmj_sws_cstsrv BustedGENEVE)',
-  //fq4		: '+lang_s:(fr)',
-  //fq4		: ''
 };
 
 var lastTweetId = '';

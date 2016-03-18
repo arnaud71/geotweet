@@ -1,14 +1,18 @@
 
 <html>
 <head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
   <link href="css/matrix.css" rel="stylesheet">
-
+  <script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript" src="dbMatrix.js"></script>
 </head>
 <canvas id="c"></canvas>
 <script type="text/javascript">
 
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
+var tweets = [];
 
 //making the canvas full screen
 c.height = window.innerHeight;
@@ -16,96 +20,124 @@ c.width = window.innerWidth;
 var font_size = 15;
 var columns = Math.round(c.width/font_size); //number of columns for the rain
 var ligns = Math.round(c.height/font_size);
+var start = 0;
+
+//load data from solr
+
+getTweets(columns,start,setTweets);
 
 
 //chinese characters - taken from the unicode charset
 //var chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
-var t1 = "@HRC_MotoGP All New Honda Civic Hatchback Prototype Tampil di Geneva Motor Show 2016 https://t.co/28fyiBLPgm https://t.co/6FCPyfJsi3 Kia Niro arrives in Geneva @kia #GIMS https://t.co/WTcuogyQaA Le salon de Genève 2016 est lancé: nouveautés en photos nhttps://t.co/URqmFqHqJz Here we are!!!!!!  n#geneva2016 #genevamotorshow #geneva #ginevra #motorshow #car #cars #carporn… https://t.co/W7Daf0rw7j Peugeot 2008 gets a new face for Geneva https://t.co/DITZinas3L #Peugeot #News Salão de Genebra: Lamborghini Centenário - Notícia https://t.co/VcwMSN71jQ Geneva video analysis - hottest cars of the 2016 show #Cars https://t.co/iqrdw0wbyG DS E-TENSE ozdobą wystawy Geneva Motor Show 2016: Zaprezentowany na wystawie w Genewie E-TENSE to nieco bardzi... https://t.co/sEoHJZ77M0Renault brings sporty Megane wagon and opulent Zoe to Geneva https://t.co/8Q70X44Xi7 SALÃO DE GENEBRA 2016 €2.400.000 Bugatti Chiron 2017 4WD 8.0 W16 1.521 cv 163\,2 mkgf";
-var t2 = "                        ";
-
-
-
+//var t1 = "@HRC_MotoGP All New Honda Civic Hatchback Prototype Tampil di Geneva Motor Show 2016 https://t.co/28fyiBLPgm https://t.co/6FCPyfJsi3 Kia Niro arrives in Geneva @kia #GIMS https://t.co/WTcuogyQaA Le salon de Genève 2016 est lancé: nouveautés en photos nhttps://t.co/URqmFqHqJz Here we are!!!!!!  n#geneva2016 #genevamotorshow #geneva #ginevra #motorshow #car #cars #carporn… https://t.co/W7Daf0rw7j Peugeot 2008 gets a new face for Geneva https://t.co/DITZinas3L #Peugeot #News Salão de Genebra: Lamborghini Centenário - Notícia https://t.co/VcwMSN71jQ Geneva video analysis - hottest cars of the 2016 show #Cars https://t.co/iqrdw0wbyG DS E-TENSE ozdobą wystawy Geneva Motor Show 2016: Zaprezentowany na wystawie w Genewie E-TENSE to nieco bardzi... https://t.co/sEoHJZ77M0Renault brings sporty Megane wagon and opulent Zoe to Geneva https://t.co/8Q70X44Xi7 SALÃO DE GENEBRA 2016 €2.400.000 Bugatti Chiron 2017 4WD 8.0 W16 1.521 cv 163\,2 mkgf";
+//var t2 = "                        ";
 
 
 
 var totalChar = columns*ligns;
 
-var textRef1 = t1;
-var textRef2 = t2;
-
-while (textRef1.length < totalChar) {
-  textRef1 = textRef1+' '+t1;
-}
-while (textRef2.length < totalChar) {
-  textRef2 = textRef2+' '+t2;
-}
-
-
-//converting the string into an array of single characters
-textRef1 = textRef1.split("");
-textRef2 = textRef2.split("");
-
 //an array of drops - one per column
-var drops = [];
-var dText = [];
+var drops       = [];
+var toTweets    = [];
+var dText       = [];
+var textCursor  = [];
+var tweetText   = [];
+var countColumn = 0;
+
+
 //x below is the x coordinate
 //1 = y co-ordinate of the drop(same for every drop initially)
-for(var x = 0; x < columns; x++)
-	drops[x] = 1;
-  dText[x] = 0;
-
+for(var x = 0; x < columns; x++) {
+	drops[x]      = 0;
+  dText[x]      = 0;
+  textCursor[x] = 0;
+  toTweets[x]   = x;
+}
 //drawing the characters
 function draw()
 {
-	//Black BG for the canvas
-	//translucent BG to show trail
-	//ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-  ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
-	ctx.fillRect(0, 0, c.width, c.height);
+  if (tweets.length>0) {
+  	//Black BG for the canvas
+  	//translucent BG to show trail
+  	//ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
+  	ctx.fillRect(0, 0, c.width, c.height);
 
-	ctx.fillStyle = "#0F0"; //green text
-	ctx.font = font_size + "px arial";
-  ctx.textAlign="center"
-	//looping over drops
-	for(var i = 0; i < drops.length; i++)
-	{
-		//a random chinese character to print
-		//var text = chinese[Math.floor(Math.random()*chinese.length)];
-    var j = i*ligns+drops[i];
-    //console.log('i '+i);
-    //console.log('l '+ligns);
-    //console.log('d '+drops[i]);
-    //console.log('j '+j);
-    var text;
-    if (dText[i]==0) {
-      text = textRef1[j]
-    }
-    else {
-      text = textRef2[j]
-    }
+  	ctx.fillStyle = "#0F0"; //green text
+  	ctx.font = font_size + "px arial";
+    ctx.textAlign = "center";
 
-		//x = i*font_size, y = value of drops[i]*font_size
-		ctx.fillText(text, i*font_size, drops[i]*font_size);
 
-		//sending the drop back to the top randomly after it has crossed the screen
-		//adding a randomness to the reset to make the drops scattered on the Y axis
-		if(drops[i]*font_size > c.height && Math.random() > 0.975) {
-			drops[i] = 0;
-      // change text ref
-      if (dText[i]==0) {
-        dText[i]=1;
+
+
+
+  	//looping over drops
+  	for(var i = 0; i < drops.length; i++)
+  	{
+
+  		//a random chinese character to print
+  		//var text = chinese[Math.floor(Math.random()*chinese.length)];
+      //var j = i*ligns+drops[i];
+      //console.log('i '+i);
+      //console.log('l '+ligns);
+      //console.log('d '+drops[i]);
+      //console.log('j '+j);
+      var text;
+      text = tweetText[toTweets[i]].charAt(textCursor[i]);
+  		//x = i*font_size, y = value of drops[i]*font_size
+  		ctx.fillText(text, i*font_size, (drops[i])*font_size);
+
+  		//sending the drop back to the top randomly after it has crossed the screen
+  		//adding a randomness to the reset to make the drops scattered on the Y axis
+  		if(drops[i]*font_size > c.height && Math.random() > 0.975) {
+  			drops[i] = 0;
+        // if message is ending
+        if (tweetText[toTweets[i]].length<textCursor[i]) {
+
+          // display date and number
+          var date = tweets[i].created_at_dt;
+          for (var j=0; j<date.length ; j++) {
+            ctx.fillText(date.charAt(j), j*font_size, (ligns)*font_size);
+
+          }
+          textCursor[i] = 0;
+          tweetText[i] = tweets[i].text_t[0];
+          //console.log('countColumn: '+countColumn);
+          countColumn++;
+          if (countColumn+1>columns) {
+            countColumn = 0;
+            start += columns;
+            console.log('start: '+start);
+
+            getTweets(columns,start,setTweets);
+          }
+        }
       }
-      else {
-        dText[i]=0;
-      }
-    }
-		//incrementing Y coordinate
-		drops[i]++;
-	}
+  		//incrementing Y coordinate
+  		drops[i]++;
+      textCursor[i]++;
+  	}
+  }
+}
+
+function initText() {
+  for(var x = 0; x < columns; x++) {
+    tweetText[x]   = tweets[x].text_t[0];
+    countColumn++;
+  }
+}
+
+function setTweets(tab) {
+  tweets = tab;
+  // only first time
+  if (start== 0) initText();
+  //draw();
 }
 
 //draw();
-setInterval(draw, 50);
+setInterval(draw, 40);
+
+
 
 
 

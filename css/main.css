@@ -2,8 +2,9 @@ body{
   margin: 0;
   padding: 0;
   width: 100%;
-
 }
+
+
 h1 {
   font-family:"Arvo";
   font-weight:normal;
@@ -141,6 +142,18 @@ h3 {
   height: 600px;
   margin: 0;
   padding: 200px 0 260px 0;
+  background-size: cover;
+
+}
+
+
+#slide0{
+  background: #000;
+  color: #fff;
+  height: 1000px;
+  padding: 170px 0 0 200px;
+  text-align: center;
+  vertical-align:middle;
   background-size: cover;
 
 }
