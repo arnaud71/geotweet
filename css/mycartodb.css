@@ -1,0 +1,27 @@
+#map .cartodb-timeslider{
+    position: absolute;
+    display: inline-block;
+    height : 40px;
+    width: auto;
+    margin-bottom: 30px;
+    background: rgba(58,58,48,0.5);
+    padding: 0;
+    z-index: 105;
+  }
+
+
+#map .cartodb-timeslider a.button {
+
+}
+
+
+#map .cartodb-timeslider p {
+    font-size: 20px;
+}
+
+#map .cartodb-timeslider ul li {
+    vertical-align: middle;
+    border-right: 1px solid #999999;
+
+
+}
