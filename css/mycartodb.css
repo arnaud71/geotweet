@@ -1,3 +1,8 @@
+.leaflet-tile {
+    -webkit-filter: brightness(1.5) contrast(100%);
+    filter: brightness(1.5) contrast(100%);
+}
+
 #map .cartodb-timeslider{
     position: absolute;
     display: inline-block;
@@ -24,4 +29,15 @@
     border-right: 1px solid #999999;
 
 
+}
+
+#description {
+  font-family: "Arvo";
+  font-weight: normal;
+  font-size: 20px;
+  margin: 5px 0;
+  padding: 0;
+  z-index: 1;
+  collor: #FFF;
+  position: float;
 }

@@ -71,9 +71,9 @@ h2 {
 }
 
 h3 {
-  font-family: Oswald;
+  font-family: "Arvo";
   font-weight: normal;
-  font-size: 16px;
+  font-size: 20px;
   text-align: left;
   margin: 5px 0;
   padding: 0;
@@ -225,3 +225,73 @@ h3 {
   bottom: -54px;
   left: -102px;
 }
+
+#scrolldown {
+  background: url('../img/scrolldown.png') no-repeat;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  bottom: -200px;
+  left: -102px;
+
+  background-size: 50px 50px;
+}
+
+#scrolldown.tooltip::before {
+    content: attr(data-tip);
+    font-size: 20px;
+    position:relative;
+    z-index: 999;
+    white-space:nowrap;
+    color:#ffffff;
+    left: -50%;
+    bottom:-50px;
+    opacity: 0;
+    transition:opacity 0.4s ease-out;
+    }
+
+#scrolldown.tooltip:hover::before {
+    opacity: 1;
+    //bottom:-35px;
+    }
+
+
+#play2.tooltip::before {
+    content: attr(data-tip);
+    font-size: 20px;
+    position:relative;
+    z-index: 999;
+    white-space:nowrap;
+    color:#ffffff;
+    left: -40%;
+    bottom:-110px;
+    opacity: 0;
+    transition:opacity 0.4s ease-out;
+    }
+
+#play2.tooltip:hover::before {
+    opacity: 1;
+    //bottom:-35px;
+    }
+
+
+#play3.tooltip::before {
+    content: attr(data-tip);
+    color: #333333;
+    font-size: 20px;
+    position:relative;
+    z-index: 999;
+    white-space:nowrap;
+    color: #797979;
+    left: -40%;
+    bottom:-110px;
+    opacity: 0;
+    transition:opacity 0.4s ease-out;
+    }
+
+#play3.tooltip:hover::before {
+    opacity: 1;
+    //bottom:-35px;
+    }

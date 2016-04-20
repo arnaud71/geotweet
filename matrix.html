@@ -21,6 +21,7 @@ var font_size = 15;
 var columns = Math.round(c.width/font_size); //number of columns for the rain
 var ligns = Math.round(c.height/font_size);
 var start = 0;
+var activate = true;
 
 //load data from solr
 
@@ -43,6 +44,7 @@ var dText       = [];
 var textCursor  = [];
 var tweetText   = [];
 var countColumn = 0;
+var newDate     = false;
 
 
 //x below is the x coordinate
@@ -56,10 +58,17 @@ for(var x = 0; x < columns; x++) {
 //drawing the characters
 function draw()
 {
+  if (activate) {
   if (tweets.length>0) {
   	//Black BG for the canvas
   	//translucent BG to show trail
   	//ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+
+    if (false) {
+      ctx.fillStyle = "rgba(0, 0, 0, 1)";
+      ctx.fillRect(0, c.height-font_size-10, 21*font_size, c.height);
+    }
+
     ctx.fillStyle = "rgba(0, 0, 0, 0.025)";
   	ctx.fillRect(0, 0, c.width, c.height);
 
@@ -68,11 +77,8 @@ function draw()
     ctx.textAlign = "center";
 
 
-
-
-
   	//looping over drops
-  	for(var i = 0; i < drops.length; i++)
+  	for(var i = 0; i < (drops.length); i++)
   	{
 
   		//a random chinese character to print
@@ -97,12 +103,13 @@ function draw()
           // display date and number
           var date = tweets[i].created_at_dt;
           for (var j=0; j<date.length ; j++) {
-            ctx.fillText(date.charAt(j), j*font_size, (ligns)*font_size);
+//            ctx.fillText(date.charAt(j), (j+1)*font_size, (ligns)*font_size);
 
           }
           textCursor[i] = 0;
           tweetText[i] = tweets[i].text_t[0];
           //console.log('countColumn: '+countColumn);
+          newDate = true;
           countColumn++;
           if (countColumn+1>columns) {
             countColumn = 0;
@@ -112,11 +119,15 @@ function draw()
             getTweets(columns,start,setTweets);
           }
         }
+        else {
+          newDate = false;
+        }
       }
   		//incrementing Y coordinate
   		drops[i]++;
       textCursor[i]++;
   	}
+  }
   }
 }
 
@@ -135,9 +146,18 @@ function setTweets(tab) {
 }
 
 //draw();
-setInterval(draw, 45);
+//setInterval(draw, 45); // normal
+
+setInterval(draw, 100); // big font
 
 
+$(window).keypress(function(e) {
+    if (e.which === 32) {
+      activate =! activate;
+        //Your code goes here
+
+    }
+});
 
 
 
