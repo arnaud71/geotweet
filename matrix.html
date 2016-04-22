@@ -7,11 +7,15 @@
   <script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
   <script type="text/javascript" src="dbMatrix.js"></script>
 </head>
-<canvas id="c"></canvas>
+<canvas id="c">
+
+</canvas>
+
 <script type="text/javascript">
 
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
+
 var tweets = [];
 
 //making the canvas full screen
@@ -21,7 +25,11 @@ var font_size = 15;
 var columns = Math.round(c.width/font_size); //number of columns for the rain
 var ligns = Math.round(c.height/font_size);
 var start = 0;
-var activate = true;
+var activate = false;
+var firstime = true;
+
+//ctx.font = "30px Arial";
+
 
 //load data from solr
 
@@ -58,78 +66,87 @@ for(var x = 0; x < columns; x++) {
 //drawing the characters
 function draw()
 {
-  if (activate) {
-  if (tweets.length>0) {
-  	//Black BG for the canvas
-  	//translucent BG to show trail
-  	//ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  if (!firstime) {
+    if (activate) {
+    if (tweets.length>0) {
+    	//Black BG for the canvas
+    	//translucent BG to show trail
+    	//ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
 
-    if (false) {
-      ctx.fillStyle = "rgba(0, 0, 0, 1)";
-      ctx.fillRect(0, c.height-font_size-10, 21*font_size, c.height);
-    }
-
-    ctx.fillStyle = "rgba(0, 0, 0, 0.025)";
-  	ctx.fillRect(0, 0, c.width, c.height);
-
-  	ctx.fillStyle = "#0F0"; //green text
-  	ctx.font = font_size + "px arial";
-    ctx.textAlign = "center";
-
-
-  	//looping over drops
-  	for(var i = 0; i < (drops.length); i++)
-  	{
-
-  		//a random chinese character to print
-  		//var text = chinese[Math.floor(Math.random()*chinese.length)];
-      //var j = i*ligns+drops[i];
-      //console.log('i '+i);
-      //console.log('l '+ligns);
-      //console.log('d '+drops[i]);
-      //console.log('j '+j);
-      var text;
-      text = tweetText[toTweets[i]].charAt(textCursor[i]);
-  		//x = i*font_size, y = value of drops[i]*font_size
-  		ctx.fillText(text, i*font_size, (drops[i])*font_size);
-
-  		//sending the drop back to the top randomly after it has crossed the screen
-  		//adding a randomness to the reset to make the drops scattered on the Y axis
-  		if(drops[i]*font_size > c.height && Math.random() > 0.975) {
-  			drops[i] = 0;
-        // if message is ending
-        if (tweetText[toTweets[i]].length<textCursor[i]) {
-
-          // display date and number
-          var date = tweets[i].created_at_dt;
-          for (var j=0; j<date.length ; j++) {
-//            ctx.fillText(date.charAt(j), (j+1)*font_size, (ligns)*font_size);
-
-          }
-          textCursor[i] = 0;
-          tweetText[i] = tweets[i].text_t[0];
-          //console.log('countColumn: '+countColumn);
-          newDate = true;
-          countColumn++;
-          if (countColumn+1>columns) {
-            countColumn = 0;
-            start += columns;
-            console.log('start: '+start);
-
-            getTweets(columns,start,setTweets);
-          }
-        }
-        else {
-          newDate = false;
-        }
+      if (false) {
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        ctx.fillRect(0, c.height-font_size-10, 21*font_size, c.height);
       }
-  		//incrementing Y coordinate
-  		drops[i]++;
-      textCursor[i]++;
-  	}
+
+      ctx.fillStyle = "rgba(0, 0, 0, 0.025)";
+    	ctx.fillRect(0, 0, c.width, c.height);
+
+    	ctx.fillStyle = "#0F0"; //green text
+    	ctx.font = font_size + "px arial";
+      ctx.textAlign = "center";
+
+
+    	//looping over drops
+    	for(var i = 0; i < (drops.length); i++)
+    	{
+
+    		//a random chinese character to print
+    		//var text = chinese[Math.floor(Math.random()*chinese.length)];
+        //var j = i*ligns+drops[i];
+        //console.log('i '+i);
+        //console.log('l '+ligns);
+        //console.log('d '+drops[i]);
+        //console.log('j '+j);
+        var text;
+        text = tweetText[toTweets[i]].charAt(textCursor[i]);
+    		//x = i*font_size, y = value of drops[i]*font_size
+    		ctx.fillText(text, i*font_size, (drops[i])*font_size);
+
+    		//sending the drop back to the top randomly after it has crossed the screen
+    		//adding a randomness to the reset to make the drops scattered on the Y axis
+    		if(drops[i]*font_size > c.height && Math.random() > 0.975) {
+    			drops[i] = 0;
+          // if message is ending
+          if (tweetText[toTweets[i]].length<textCursor[i]) {
+
+            // display date and number
+            var date = tweets[i].created_at_dt;
+            for (var j=0; j<date.length ; j++) {
+  //            ctx.fillText(date.charAt(j), (j+1)*font_size, (ligns)*font_size);
+
+            }
+            textCursor[i] = 0;
+            tweetText[i] = tweets[i].text_t[0];
+            //console.log('countColumn: '+countColumn);
+            newDate = true;
+            countColumn++;
+            if (countColumn+1>columns) {
+              countColumn = 0;
+              start += columns;
+              console.log('start: '+start);
+
+              getTweets(columns,start,setTweets);
+            }
+          }
+          else {
+            newDate = false;
+          }
+        }
+    		//incrementing Y coordinate
+    		drops[i]++;
+        textCursor[i]++;
+    	}
+    }
+    }
   }
+  else {
+    ctx.fillStyle = "#0F0";
+    ctx.font = font_size*4 + "px arial";
+    ctx.textAlign = "center";
+    ctx.fillText("Espace pour démarrer/stopper",c.width/2,c.height/2);
   }
 }
+
 
 function initText() {
   for(var x = 0; x < columns; x++) {
@@ -145,19 +162,21 @@ function setTweets(tab) {
   //draw();
 }
 
-//draw();
-//setInterval(draw, 45); // normal
-
-setInterval(draw, 100); // big font
 
 
 $(window).keypress(function(e) {
     if (e.which === 32) {
       activate =! activate;
+      firstime = false;
         //Your code goes here
 
     }
 });
+
+
+  setInterval(draw, 45); // normal
+
+  //setInterval(draw, 100); // big font
 
 
 
