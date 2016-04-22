@@ -198,6 +198,17 @@ h3 {
 
 }
 
+
+#slide5{
+  background:url('../img/dark_map.jpg') 50% 0 no-repeat fixed;
+  color: #fff;
+  height: 600px;
+  margin: 0;
+  padding: 200px 0 260px 0;
+  background-size: cover;
+
+}
+
 #slide_blank{
   background-color: #0D0F09;
   color: #333333;
