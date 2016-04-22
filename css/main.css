@@ -189,6 +189,15 @@ h3 {
 
 }
 
+#slide4{
+  background:url('../img/matrix.png') 50% 0 no-repeat fixed;
+  color: #fff;
+  height: 600px;
+  padding: 170px 0 0 0;
+  background-size: cover;
+
+}
+
 #slide_blank{
   background-color: #0D0F09;
   color: #333333;
