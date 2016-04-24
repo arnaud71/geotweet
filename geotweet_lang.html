@@ -4,11 +4,13 @@
     <title>GEoTweet distribution langues </title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/main.css"/>
     <!-- Utilise LESS -->
     <link rel="stylesheet/less" type="text/css" href="less/styles.less">
     <script src="lib/less.min.js" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+
 
     <script type="cartocss/text" id="cartocss">
     /** torque visualization */
@@ -109,54 +111,57 @@
 
       <ul>
 
-        <li data=" WHERE lang_s = 'fr'" data-type="sql">
+        <li data=" WHERE lang_s = 'fr'" data-type="sql" data-tip="Choisir francais">
           <span data=" WHERE lang_s = 'fr'" class="lang-square-fr"></span> fr
         </li>
 
-        <li data=" WHERE lang_s = 'de'" data-type="sql">
-          <span data=" WHERE lang_s = 'de'" class="lang-square-de"> </span> de
-        </li>
-
-        <li data=" WHERE lang_s = 'it'" data-type="sql">
-          <span data=" WHERE lang_s = 'it'" class="lang-square-it"> </span> it
-        </li>
-
-
-        <li data=" WHERE lang_s = 'en'" data-type="sql">
+        <li data=" WHERE lang_s = 'en'" data-type="sql" data-tip="Choisir anglais">
           <span data=" WHERE lang_s = 'en'"  class="lang-square-en"> </span> en
         </li>
 
+        <li data=" WHERE lang_s = 'de'" data-type="sql" data-tip="Choisir allemand">
+          <span data=" WHERE lang_s = 'de'" class="lang-square-de"> </span> de
+        </li>
 
-        <li data=" WHERE lang_s = 'pt'" data-type="sql">
+        <li data=" WHERE lang_s = 'it'" data-type="sql" data-tip="Choisir italien">
+          <span data=" WHERE lang_s = 'it'" class="lang-square-it"> </span> it
+        </li>
+
+        <li data=" WHERE lang_s = 'pt'" data-type="sql" data-tip="Choisir portugais">
           <span data=" WHERE lang_s = 'pt'" class="lang-square-pt"> </span> pt
         </li>
 
-        <li data=" WHERE lang_s = 'es'" data-type="sql">
+        <li data=" WHERE lang_s = 'es'" data-type="sql" data-tip="Choisir espagnol">
           <span data=" WHERE lang_s = 'es'" class="lang-square-es"> </span> es
         </li>
 
-        <li data=" WHERE lang_s = 'ar'" data-type="sql">
-          <span data=" WHERE lang_s = 'ar'" class="lang-square-ar"> </span> ar
+
+        <li data=" WHERE lang_s = 'ar'" data-type="sql" data-tip="Choisir arabe">
+
+          <span data=" WHERE lang_s = 'ar'" class="lang-square-ar" > </span> ar
         </li>
 
-        <li data=" WHERE lang_s = 'ja'" data-type="sql">
+
+        <li data=" WHERE lang_s = 'ja'" data-type="sql" data-tip="Choisir japonais" >
           <span data=" WHERE lang_s = 'ja'"  class="lang-square-ja"> </span> ja
         </li>
 
+        <!--
         <li data=" WHERE lang_s = 'ht'" data-type="sql">
           <span data=" WHERE lang_s = 'ht'" class="lang-square-ht"> </span> ht
         </li>
+        -->
 
-        <li data=" WHERE lang_s = 'und'" data-type="sql">
+        <li data=" WHERE lang_s = 'und'" data-type="sql" data-tip="Choisir langues non définis">
           <span data=" WHERE lang_s = 'und'"  class="lang-square-und"> </span> un
         </li>
 
-        <li data=" WHERE lang_id = 11" data-type="others">
+        <li data=" WHERE lang_id = 11" data-type="others" data-tip="Choisir autres langues">
           <span data=" WHERE lang_id = 'pt'"  class="lang-square-others"> </span> ot
         </li>
 
-        <li data="XXXXX" data-type="sql" style="text-align:center">
-          raz
+        <li data="XXXXX" data-type="sql" style="text-align:center" data-tip="Toutes les langues">
+          toutes
         </li>
       </ul>
     </div>
