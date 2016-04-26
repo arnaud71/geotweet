@@ -5,28 +5,159 @@
     <title>GEoTweet: Les tweets geolocalisées de Genève</title>
     <link rel="stylesheet" href="css/main.css"/>
 
+    <script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.stellar.min.js"></script>
+
+
   </head>
 
 
   <body>
-    <div id="slide0">
+    <header id="header">
+        <div class="content">
+          <div id="logo"><a href=""> GEoTweet </a></div>
+          <nav id="nav">
+            <ul>
+              <li><a href="#slide1" class="active" title="Prochaine section" >Introduction</a></li>
+              <li><a href="#slide2" title="Prochaine Section">Langues</a></li>
+              <li><a href="#slide3" title="Prochaine Section">Points chauds</a></li>
+              <li><a href="#slide4" title="Prochaine Section">Salon auto</a></li>
+              <li><a href="#slide5" title="Prochaine Section">Vidéo</a></li>
+            </ul>
+          </nav>
+      </div>
+    </header>
+
+    <div id="slide1" data-stellar-background-ratio="0.5">
       <div class="content">
-        <h1> GEoTweet </h1>
-        <h3> Dès le 27 avril 2016, un projet évènement HES de la HEG Genève</h3>
-        <h3> L'exploration des Tweets géolocalisés dans le grand Genève</h3>
+        <h1>GEoTweet</h1>
+        <h2>Les limites et frontières de Genève à l'ère du big data</h2>
+        </br></br></br></br>
+        <h3>A l'heure ou Genève est cartographié en 3D avec une précision de 10 points par m2</h3>
+        <h3>Un voyage en Terra Incognita dans les données de Twitter émises depuis le Grand Genève<h3>
+        <h3>Des nombres, des cartes interactives, des découvertes et beaucoup d'incertitudes à explorer ...</h3>
+        <h3>GEoTweet un projet évènement HES Genève de la HEG</h3>
+        <div id="scrolldown" class="tooltip" data-tip="Défiler vers le bas"> </div>
       </div>
    </div>
 
-   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+   <div id="slide_blank">
+     <div class="content">
+     </div>
+   </div>
 
-  ga('create', 'UA-75295625-1', 'auto');
-  ga('send', 'pageview');
+   <div id="slide2" data-stellar-background-ratio="0.5">
+     <div class="content" >
 
-  </script>
+       <a href="geotweet_lang.html">
+         <h1>Exploration de la diversité des langues</h1>
+         <h2>Les langues des tweets sur 8 mois concentrées en 24h</h2>
+         <div id="play2" class="tooltip" data-tip="Vers carte intéractive"></div>
+      </a>
 
+     </div>
+   </div>
+
+   <div id="slide_blank">
+     <div class="content">
+     </div>
+   </div>
+
+   <div id="slide3" data-stellar-background-ratio="0.5">
+     <div class="content">
+
+       <a href="geotweet_heatmap.html">
+         <div class="h1_black">Les points chauds à Genève</></div>
+         <div class="h2_black">8 mois de tweets concentrées en 24h</div>
+         <div id="play3" class="tooltip" data-tip="Vers carte intéractive"></div>
+       </a>
+
+     </div>
+   </div>
+
+   <div id="slide_blank">
+     <div class="content">
+     </div>
+   </div>
+
+   <div id="slide4" data-stellar-background-ratio="0.5">
+     <div class="content">
+
+       <a href="matrix.html">
+         <h1>Mentions de "Genève"</></h1>
+         <h2>pendant le salon de l'auto en version Matrix</h2>
+         <div id="play2" class="tooltip" data-tip="    Vers la matrice"></div>
+       </a>
+
+     </div>
+   </div>
+
+   <div id="slide_blank">
+     <div class="content">
+     </div>
+   </div>
+
+   <div id="slide5" data-stellar-background-ratio="0.5">
+     <div class="content" >
+
+       <a href="video.html">
+         <h1>Le tour d'exploration de GEoTweet</h1>
+         <h2>une vidéo de 2mn 30s</h2>
+         <div id="play2" class="tooltip" data-tip="Vers vidéo intéractive"></div>
+      </a>
+
+     </div>
+   </div>
+
+
+   <div id="footer">
+     <div class="content">
+       <nav id="nav">
+       <ul>
+         <li><a href="https://evenement-hes.hesge.ch/">Evénement HES<a></li>
+         <li><a href="http://www.hesge.ch/heg">HEG</a></li>
+         <li><a href="http://bitem.hesge.ch/">BiTeM</a></li>
+         <li><a href="http://bitem.hesge.ch/people/arnaud-gaudinat">Contact</li>
+       </ul>
+     </nav>
+   </div>
+ </div>
+
+<script type="text/javascript">
+  //$(window).stellar();
+  $(document).ready(function() {
+  $("a[href*='#']").each(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname
+    && this.hash.replace(/#/,'') ) {
+      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+       if ($target) {
+         var targetOffset = $target.offset().top;
+
+<!----- JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV--->
+         $(this).click(function() {
+            $("#nav li a").removeClass("active");
+            $(this).addClass('active');
+           $('html, body').animate({scrollTop: targetOffset}, 1000);
+           return false;
+         });
+      }
+    }
+  });
+
+});
+</script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-75295625-1', 'auto');
+ga('send', 'pageview');
+
+</script>
   </body>
 </html>
