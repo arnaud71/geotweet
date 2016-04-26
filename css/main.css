@@ -104,10 +104,18 @@ h3 {
 }
 
 #nav {
-  width: 500px;
+  width: 600px;
   float: right;
   margin-top: 20px;
 }
+
+
+#navfooter {
+  width: 600px;
+  float: right;
+  margin-top: 20px;
+}
+
 
 #logo a {
   color: #fff; text-decoration: none;
