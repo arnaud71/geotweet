@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Explication GEoTweet</title>
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+
+  <body>
+
+    <header id="header">
+        <div class="content">
+          <div id="logo"><a href=""> GEoTweet </a></div>
+          <nav id="nav">
+            <ul>
+              <li><a href="index.html#slide1" class="active" title="INtrodcution" >Introduction</a></li>
+              <li><a href="index.html#slide2" title="Carte interactive sur la diversité des langues">Diversité langues</a></li>
+              <li><a href="index.html#slide3" title="Carte interactive des points chauds">Points chauds</a></li>
+              <li><a href="index.html#slide4" title="Tout les messages durant le salon de l'auto">Salon auto</a></li>
+              <li><a href="index.html#slide5" title="Un tour guidé en vidéo">Vidéo</a></li>
+              <li><a href="index.html#slide6" title="Explications">Explications</a></li>
+            </ul>
+          </nav>
+      </div>
+    </header>
+
+
+    <div id="slide" data-stellar-background-ratio="0.5">
+      <div class="content">
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>Explications sur GEoTweet</h1>
+        <p>Dernière modification, le 9 mai 2016, par Arnaud Gaudinat</p>
+        <div class="section">
+          <h3>Qu’est-ce que GEoTweet ?</h3>
+
+          <p>
+
+            GEoTweet, c’est un projet genevois qui traite de Genève et de ses diverses frontières. C’est une exploration, une découverte de nouvelles données jusqu’alors inexplorées. La capture des tweets utilisés pour cette recherche a débuté en avril 2015, et continue encore actuellement.
+          </p>
+          <p>
+            Cette capture se fait à partir d’une source de données continue et publique produite par Twitter (le « Public streaming API »). GEoTweet capte deux types de tweets au niveau mondial : les tweets géolocalisés par des coordonnées longitude-latitude autour de Genève, et les tweets comprenant le mot « Genève » en différentes langues (français, anglais, allemand, italien, portugais, espagnol).
+          </p>
+
+         <h3>Pourquoi le nom GEoTweet?</h3>
+         <p>
+           La première partie du nom, « GEo », contient à la fois le début du mot « géolocalisé » et l’abréviation bien connue de Genève : « GE ». La seconde partie contient le mot « tweet », qui désigne explicitement les messages échangés sur Twitter. Le nom « GEoTweet » indique donc clairement que l’on s’intéresse en premier lieu aux tweets émis à Genève.
+         </p>
+         <p>
+           GEoTweet fait parti des projets sélectionnés pour l’évènement HES 2016, au même titre que ‘Mirroir’ et ‘Regard’.
+        </p>
+      </div>
+
+      <h3>Pourquoi Twitter?</h3>
+      <p>
+        Twitter, c’est 500 millions de tweets par jour en 2015, et c’est la plateforme de micro-blogging la plus populaire du moment. La Bibliothèque du Congrès américain (Library of Congress) a souligné il y a trois ans l’importance des données échangées sur Twitter, en indiquant sa volonté d’archiver tous les tweets jamais créés, et en initiant dans ce but un partenariat avec Twitter. Ce réseau social peut être qualifié de plateforme la plus ouverte parmi ses autres concurrents, puisque sa nature même est publique par défaut, à la fois du point de vue des utilisateurs et de celui des développeurs : les tweets émis sont par défaut publics, et l’interface de programmation permet une large réutilisation grâce à sa faible limitation.
+      </p>
+
+
+
+     <h3>Quelques Chiffres</h3>
+     <p>
+       140 caractères, c’est le nombre maximum de signes que peut comporter un tweet mais contient en moyenne 40 fois plus d’information.  Ces informations additionnelles sont appelées des meta-donnée et décrive certaines caractéristique du tweet tels que le nombre retweet, le pseudo et la région de l’auteur, bien d’autres … et notamment la langue détectée du message.
+     </p>
+     <p>
+       GeoTweet c’est 3 millions de tweets capturés pendant un an. Dont 2.7 millions avec la mentions ‘Genève’ (en plusieurs langues) et 300'000 géolocalisés.  Les tweets émient dans un rayon de 20km autour de Genève sont approximativement de 100'000 (ce qui est consistant avec d’autres études portant sur New York, Londres et Paris).  La langue la plus utilisée est le français avec 38.4%, suivi par l’anglais avec 33.9%. Les points chauds sont clairement l’aéroport et le quartier de la gare Cornavin. D’autres résultats seront prochainement publiés sur ce site.
+     </p>
+
+    <span class="anchor" id="carte-langues"></span>
+    <div class="section">
+      <h3>La carte des langues</h3>
+      <p>
+        La carte interactive présentant la diversité linguistique genevoise est basée sur la totalité des tweets géolocalisés dans un rayon de 20 km autour de Genève capturés durant huit mois en 2015. Ce corpus de données est concentré sur une seule journée pour des raisons de lisibilité. Cette carte permet de sélectionner une langue parmi les plus populaire à Genève, et de naviguer dans n’importe quel endroit de la région genevoise pour observer la répartition linguistique.
+      </p>
+    </div>
+
+
+
+    <span class="anchor" id="points-chauds"></span>
+    <div class="section">
+      <h3>La carte des point chauds</h3>
+      <p>
+        A l’instar de la carte des langues, la carte interactive des points chauds concentre les données géolocalisées récoltées sur huit mois autour de Genève sur un laps de temps de 24 heures. Ainsi, cette représentation permet d’observer la répartition des tweets tout au long de la journée, grâce à l’indication des heures et minutes. On peut ainsi visualiser le rythme de vie des tweetos genevois de minuit à minuit, avec différents pics d’activité.
+      </p>
+    </div>
+
+    <span class="anchor" id="salon-auto"></span>
+    <div class="section">
+      <h3>Le salon de l'auto</h3>
+
+      <p>
+        L’animation présente les messages contenus dans tous les tweets émis en français pendant les deux semaines du Salon de l’auto 2016 à Genève. Les tweets s’affichent dans l’ordre chronologique, avec un effet de matrice directement dans le navigateur web. Pour pouvoir mieux lire le contenu des tweets, il est possible de mettre la vidéo en pause avec la touche « espace » ou le bouton de la souris. Cette animation a été principalement crée pour la vidéo de démonstration.
+      </p>
+    </div>
+
+    <span class="anchor" id="video-presentation"></span>
+    <div class="section">
+      <h3>La vidéo de présentation</h3>
+      <p>La vidéo de présentation offre un parcours à travers GEoTweet en 2 minutes 30 secondes. Principalement créée dans un but illustratif avec les cartes animées de la diversité linguistique et des points chauds de Genève, elle contient également quelques informations collectées lors de nos analyses. La musique accompagnant la vidéo a été créée avec le morceau de démonstration du logiciel de musique électronique Rebirth.
+      </p>
+    </div>
+
+
+    <h3>Qui est derrière GEoTweet</h3>
+    <p>
+      Le projet GEoTweet a été dirigé et réalisé par Arnaud Gaudinat, adjoint scientifique à la HEG Genève. L’idée originale est de Patrick Ruch, professeur HES, qui a œuvré en tant que conseiller tout comme Jean-Philippe Trabichet, également professeur HES.
+    </p>
+    <p>
+      La principale analyse des données a été réalisée par les étudiantes du Master IS de la HEG, Elisa Banfi et Fanny Béguelin. Romaine Kaufmann a également participé au projet en œuvrant sur le statut de GEoTweet en tant qu’archive.
+    </p>
+    <p>
+      Véronique Murbach, Céline Piccand et Nadine Sharaf du LTI ont apporté leur aide pour le design graphique et web.
+    </p>
+    <p>
+      Marianne Aerni et son équipe se sont occupées de la communication et de l’organisation de divers événements autour du projet GEoTweet.
+    </p>
+    <p>
+      Nous remercions également l’équipe du comité opérationnel de l’Evénement HES pour ses conseils avisés, ainsi que le comité de décision de l’Evénement HES pour avoir apporté son support au projet GEoTweet depuis le début.
+    </p>
+    <p>
+      Ce projet a été financé par la HES-SO Genève, la HEG Genève ainsi que les nombreux sponsors de l'évènement HES.
+    </p>
+
+
+    <h3>Quelles sont les principales technologies utilisées ? </h3>
+    <p>
+      La capture des tweets a été réalisée à partir du Public streaming API de Twitter en utilisant des modules Node.js en Javascript. L’indexation en temps réel est prise en charge par le moteur de recherche open source Solr, et les cartes interactives ont été réalisées avec l’outil CartoDB, basé sur la magnifique bibliothèque open source Leaflet.
+    </p>
+
+
+    <h3>Conclusion </h3>
+    <p>
+      Au final, GEoTweet c’est plus de 3 millions de tweets au total, collectés sur un an. C’est aussi un site web, deux cartes interactives, une vidéo de démonstration, un travail de recherche du Master IS de la HEG, et une infrastructure back-office de collecte et recherche.
+    </p>
+    <p>
+      Cette recherche a mis en lumière les spécificités des tweets produits à Genève et parlant de Genève, mais a aussi permis de clarifier les limites d’une telle source d’information. Ces données bien que quantitativement insuffisantes au jour le jour, restent exploitables et significatives  sur une année voire sur quelques mois. Les résultats identifiés par les étudiantes du Master IS démontrent l’intérêt d’une telle étude, même s’il reste encore beaucoup d’aspects à exploiter. La question de la capture et de l’analyse des tweets pour une ville et sa région reste encore ouverte. Que l’on s’intéresse aux tweets émis à Genève ou parlant de Genève, il faut développer une infrastructure complexe, à maintenir.
+    </p>
+
+    <p>
+      Actuellement, GEoTweet capture les tweets géolocalisés à Genève, mais ceux-ci ne représentent qu’une petite partie de la totalité des tweets (1% à 2%). Les tweets comprenant le mot « Genève » sont également capturés, mais d’autres mots-clés pourraient être ajoutés comme « Cornavin », « TDG », « Carouge »... Toutefois, cela représenterait un post-traitement conséquent après la capture, pour éviter de récupérer des tweets n’ayant aucun rapport avec Genève, du fait de l’ambigüité de certains termes (par exemple « Carouge », qui est également une ville française).
+    </p>
+
+    <p>
+      Finalement, l’identification des comptes Twitter des genevois pourrait aussi avoir son intérêt, mais n’a pas été exploité dans cette étude.
+    </p>
+
+  </div>
+</div>
+
+<div id="footer">
+  <div class="content">
+    <nav id="nav">
+    <ul>
+      <li><a href="https://evenement-hes.hesge.ch/" title="Evènement HES">Evénement HES<a></li>
+      <li><a href="http://www.hesge.ch/heg" title="Haute Ecole de Gestion de Genève">HEG</a></li>
+      <li><a href="https://www.hesge.ch/heg/formation-base/bachelors-science/information-documentaire" title="Filière information documentaire">Information Documentaire</a></li>
+      <li><a href="http://bitem.hesge.ch/" title="Groupe de recherche en fouille de données et bibliomic">BiTeM</a></li>
+      <li><a href="http://bitem.hesge.ch/people/arnaud-gaudinat" title="Contact">Contact</li>
+    </ul>
+  </nav>
+</div>
+</div>
+
+
+    <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-75295625-1', 'auto');
+   ga('send', 'pageview');
+
+   </script>
+  </body>
+</html>

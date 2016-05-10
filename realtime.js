@@ -76,7 +76,7 @@ function displayResult(result){
 
 
     c++;
-    if (c === 3) {
+    if (c === 7) {
       c = 1;
     }
   }
@@ -112,7 +112,7 @@ function querySolr() {
 
 
 function initText() {
-  for (i=1;i<3;i++) {
+  for (i=1;i<7;i++) {
     $(function () {
       $('.tlt'+i).textillate();
       $('.tlt'+i).textillate('start');
